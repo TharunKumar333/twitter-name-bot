@@ -7,12 +7,13 @@ Created on Wed Sep 23 15:22:36 2020
 
 import tweepy
 import time
+import os
 #api key for twitter
 def create_api():
-    consumer_key = 'vvcJAGeurNsZRJC1rBkb7fT6U'
-    consumer_secret = 'UfHfLU526sJwy1cgKX8hHr3i2tENZQA1rAp26lL4lewNB4ZDM7'
-    access_token = '1283413173941399558-9LF5XD0ON00e1xVkqnUHF6ksOsMXRR'
-    access_secret = 'S26YeK0dWboNeEoSq5MKFsKXNy8HcxxF0pkrQdP1dDJPf'
+    consumer_key = os.getenv('consumer_key')
+    consumer_secret = os.getenv('consumer_secret')
+    access_token = os.getenv('access_token')
+    access_secret = os.getenv('access_secret')
     
     #simple code for tweeting
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
@@ -37,10 +38,7 @@ while True:
     api.update_profile(name=f'Tharun Kumar|{follower_count(users)}')
     print(f'updating the profile name : Tharun Kumar {follower_count(users)} Followers')
     print('waiting to refresh')
-    time.sleep(5)
+    time.sleep(60)#refreshing for every 60 seconds
 
-public_tweets = api.home_timeline()#thsi will take the first few tweets in your account 
-for tweet in public_tweets:#and this will loop over the above tweets
-    print(tweet.text)#and display the text
 
 
